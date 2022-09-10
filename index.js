@@ -18,6 +18,9 @@ function randomDraw() {
 }
 
 $("button").click(function () {
+  document
+    .getElementById("talleyParent")
+    .setAttribute("style", "visibility: visible");
   var userChoice = this.id;
   randomDrawString = randomDraw();
   //User chooses "Rock" Win Conditions
@@ -93,6 +96,9 @@ function endGameResultScreen() {
   talleyParent.insertBefore(newGameButton, crtChild);
   //"New Game" button removes itself and resets the game once clicked
   $(".newGame").click(function () {
+    document
+      .getElementById("talleyParent")
+      .setAttribute("style", "visibility: hidden");
     $(".newGame").remove();
     $(".gameButton").attr("disabled", false);
     $(".userResultText").text("User Results: ");
