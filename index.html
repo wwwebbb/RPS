@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>⛰️📰✂️</title>
+    <meta name="description" content="A web-based rock, paper, scissors game" />
 
     <!-- Bootstrap -->
     <link
@@ -24,39 +25,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <script src="" async defer></script>
-
     <!-- RPS Buttons -->
-    <div class="container d-flex justify-content-center">
-      <div class="row">
-        <div class="col-sm">
-          <button
-            type="button"
-            id="Rock"
-            class="gameButton btn btn-lg btn-outline-dark"
-          >
-            <i class="fa-solid fa-hand-fist"></i>
-          </button>
-        </div>
-        <div class="col-sm">
-          <button
-            type="button"
-            id="Paper"
-            class="gameButton btn btn-lg btn-outline-dark"
-          >
-            <i class="fa-solid fa-hand"></i>
-          </button>
-        </div>
-        <div class="col-sm">
-          <button
-            type="button"
-            id="Scissors"
-            class="gameButton btn btn-lg btn-outline-dark"
-          >
-            <i class="fa-solid fa-hand-scissors"></i>
-          </button>
-        </div>
-      </div>
+    <div class="button-section d-flex justify-content-center">
+      <button
+        type="button"
+        id="Rock"
+        class="gameButton btn btn-lg btn-outline-dark"
+      >
+        <i class="fa-solid fa-hand-fist"></i>
+      </button>
+
+      <button
+        type="button"
+        id="Paper"
+        class="gameButton btn btn-lg btn-outline-dark"
+      >
+        <i class="fa-solid fa-hand"></i>
+      </button>
+
+      <button
+        type="button"
+        id="Scissors"
+        class="gameButton btn btn-lg btn-outline-dark"
+      >
+        <i class="fa-solid fa-hand-scissors"></i>
+      </button>
     </div>
 
     <!-- Middle-screen Text -->
@@ -67,7 +60,11 @@
     </div>
 
     <!-- Bottom Results Text -->
-    <div id="talleyParent" style="visibility: hidden" class="talley">
+    <div
+      id="talleyParent"
+      class="talley d-flex justify-content-center"
+      style="visibility: hidden"
+    >
       <span class="userResultText">User Results: </span>
       <span id="crtChild" class="computerResultText">Computer Results: </span>
     </div>

@@ -87,7 +87,7 @@ $("button").click(function () {
 function endGameResultScreen() {
   //Disables RPS buttons
   $(".gameButton").attr("disabled", true);
-  //adds "New Game" button to results section, but a "visibility: hidden;" method could've been used in the html flow
+  //adds "New Game" button to results section to demonstrate DOM manipulation, but a "visibility: hidden;" method could've been used in the html flow
   const talleyParent = document.getElementById("talleyParent");
   const crtChild = document.getElementById("crtChild");
   const newGameButton = document.createElement("button");

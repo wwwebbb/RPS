@@ -1,16 +1,21 @@
-.container {
-  padding: 10% 270px 0px;
-  margin-top: 70px;
+body {
+  padding: 0 20px;
+}
+
+.button-section {
+  margin-top: 10%;
+}
+
+.gameButton {
+  margin: 0 10px;
 }
 
 .result {
-  padding: 2% 270px 3%;
+  margin: 20px auto;
   text-align: center;
 }
 
-.talley {
-  display: flex;
-  padding: 0 35%;
-  margin-top: 20px;
-  justify-content: space-between;
+.userResultText,
+.computerResultText {
+  margin: 0 10%;
 }
