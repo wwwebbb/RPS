@@ -37,11 +37,7 @@ $("button").click(function () {
     newPoint = "Computer Point";
     $(".game-status-text").css("color", "red");
     //User Wins Conditions
-  } else if (
-    (userChoice === "Rock" && randomDrawString === "Scissors") ||
-    (userChoice === "Paper" && randomDrawString === "Rock") ||
-    (userChoice === "Scissors" && randomDrawString === "Paper")
-  ) {
+  } else if (!(userChoice === randomDrawString)) {
     winCondition =
       userChoice +
       " beats " +
