@@ -1,5 +1,5 @@
 var winCondition = "";
-var newPoint = 0;
+var newPoint = "";
 var userPoint = 0;
 var computerPoint = 0;
 
@@ -23,61 +23,60 @@ $("button").click(function () {
     .setAttribute("style", "visibility: visible");
   var userChoice = this.id;
   randomDrawString = randomDraw();
-  //User chooses "Rock" Win Conditions
-  if (userChoice === "Rock" && randomDrawString === "Paper") {
-    winCondition = "You lost this round :( Choose again";
-    newPoint = 2;
-    $("h1").css("color", "red");
-  } else if (userChoice === "Rock" && randomDrawString === "Scissors") {
-    winCondition = "You won this round! Choose again";
-    newPoint = 1;
-    $("h1").css("color", "green");
-  }
-  //User chooses "Paper" Win Conditions
-  else if (userChoice === "Paper" && randomDrawString === "Rock") {
-    winCondition = "You won this round!! Choose again";
-    newPoint = 1;
-    $("h1").css("color", "green");
-  } else if (userChoice === "Paper" && randomDrawString === "Scissors") {
-    winCondition = "You lost this round :(( Choose again";
-    newPoint = 2;
-    $("h1").css("color", "red");
-  }
-  //User chooses "Scissors" Win Conditions
-  else if (userChoice === "Scissors" && randomDrawString === "Rock") {
-    winCondition = "You lost this round :((( Choose again";
-    newPoint = 2;
-    $("h1").css("color", "red");
-  } else if (userChoice === "Scissors" && randomDrawString === "Paper") {
-    winCondition = "You won this round!!! Choose again";
-    newPoint = 1;
-    $("h1").css("color", "green");
-    //User and computer choose the same condition
+  //User Loses Conditions
+  if (
+    (userChoice === "Rock" && randomDrawString === "Paper") ||
+    (userChoice === "Paper" && randomDrawString === "Scissors") ||
+    (userChoice === "Scissors" && randomDrawString === "Rock")
+  ) {
+    winCondition =
+      randomDrawString +
+      " beats " +
+      userChoice.toLowerCase() +
+      " :( Choose again";
+    newPoint = "Computer Point";
+    $(".game-status-text").css("color", "red");
+    //User Wins Conditions
+  } else if (
+    (userChoice === "Rock" && randomDrawString === "Scissors") ||
+    (userChoice === "Paper" && randomDrawString === "Rock") ||
+    (userChoice === "Scissors" && randomDrawString === "Paper")
+  ) {
+    winCondition =
+      userChoice +
+      " beats " +
+      randomDrawString.toLowerCase() +
+      "! Choose again";
+    newPoint = "User Point";
+    $(".game-status-text").css("color", "green");
+    //Draw
   } else {
     winCondition = "It's a draw :O Choose again";
-    newPoint = 0;
-    $("h1").css("color", "black");
+    newPoint = "";
+    $(".game-status-text").css("color", "black");
   }
   $(".userChoice").text("You chose " + userChoice + "...");
   $(".computerChoice").text("The computer chose " + randomDrawString + "...");
-  $("h1").text(winCondition);
+  $(".game-status-text").text(winCondition);
+  var winConditionSlice = winCondition.slice(0, winCondition.length - 12);
 
-  //Talleys the points and sends to gameCompletion function
-  if (newPoint === 1) {
-    var userResultText = $(".userResultText").text();
-    var userConcatText = userResultText.concat("I");
-    $(".userResultText").text(userConcatText);
+  //Talleys the points and sends to endGameResultScreen function
+  if (newPoint === "User Point") {
+    $(".userResultText").text($(".userResultText").text().concat("I"));
     userPoint++;
     if (userPoint === 2) {
-      $("h1").text("You won the entire game!");
+      $(".game-status-text").text(
+        winConditionSlice + "You won the entire game!"
+      );
       endGameResultScreen();
     }
-  } else if (newPoint === 2) {
-    //Refactored to make the talley text as one line of code with the lines above saved for reference
+  } else if (newPoint === "Computer Point") {
     $(".computerResultText").text($(".computerResultText").text().concat("I"));
     computerPoint++;
     if (computerPoint === 2) {
-      $("h1").text("The computer won the entire game :(");
+      $(".game-status-text").text(
+        winConditionSlice + "The computer won the entire game :("
+      );
       endGameResultScreen();
     }
   }
@@ -85,6 +84,8 @@ $("button").click(function () {
 
 //End Game button properties
 function endGameResultScreen() {
+  // End Screen animation trigger
+  $(".game-status-text").addClass("end-animation");
   //Disables RPS buttons
   $(".gameButton").attr("disabled", true);
   //adds "New Game" button to results section to demonstrate DOM manipulation, but a "visibility: hidden;" method could've been used in the html flow
@@ -94,8 +95,10 @@ function endGameResultScreen() {
   newGameButton.setAttribute("class", "newGame btn btn-sm btn-outline-dark");
   newGameButton.innerHTML = "New Game";
   talleyParent.insertBefore(newGameButton, crtChild);
+
   //"New Game" button removes itself and resets the game once clicked
   $(".newGame").click(function () {
+    $(".game-status-text").removeClass("end-animation");
     document
       .getElementById("talleyParent")
       .setAttribute("style", "visibility: hidden");
@@ -103,10 +106,10 @@ function endGameResultScreen() {
     $(".gameButton").attr("disabled", false);
     $(".userResultText").text("User Results: ");
     $(".computerResultText").text("Computer Results: ");
-    $("h1")
+    $(".game-status-text")
       .text("Choose rock, paper, or scissors to start playing!")
       .css("color", "black");
-    $("h2").text("");
+    $(".userChoice, .computerChoice").text("");
     winCondition = "";
     newPoint = 0;
     userPoint = 0;

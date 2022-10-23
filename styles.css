@@ -13,9 +13,30 @@ body {
 .result {
   margin: 20px auto;
   text-align: center;
+  font-size: 30px;
+}
+
+.userChoice {
+  color: #007bff;
 }
 
 .userResultText,
 .computerResultText {
   margin: 0 10%;
+}
+
+.end-animation {
+  animation: end-animation 0.5s infinite alternate both;
+}
+
+@keyframes end-animation {
+  from {
+    transform: scale(1.01);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .end-animation {
+    animation: none;
+  }
 }
