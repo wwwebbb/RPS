@@ -29,30 +29,25 @@ $("button").click(function () {
     (userChoice === "Paper" && randomDrawString === "Scissors") ||
     (userChoice === "Scissors" && randomDrawString === "Rock")
   ) {
-    winCondition =
-      randomDrawString +
-      " beats " +
-      userChoice.toLowerCase() +
-      " :( Choose again";
+    winCondition = `${randomDrawString} beats ${userChoice.toLowerCase()} :( Choose again`;
     newPoint = "Computer Point";
     $(".game-status-text").css("color", "red");
+
     //User Wins Conditions
   } else if (!(userChoice === randomDrawString)) {
-    winCondition =
-      userChoice +
-      " beats " +
-      randomDrawString.toLowerCase() +
-      "! Choose again";
+    winCondition = `${userChoice} beats ${randomDrawString.toLowerCase()}! Choose again`;
     newPoint = "User Point";
     $(".game-status-text").css("color", "green");
-    //Draw
+
+    //Draw Condition
   } else {
     winCondition = "It's a draw :O Choose again";
     newPoint = "";
     $(".game-status-text").css("color", "black");
   }
-  $(".userChoice").text("You chose " + userChoice + "...");
-  $(".computerChoice").text("The computer chose " + randomDrawString + "...");
+
+  $(".userChoice").text(`You chose ${userChoice}...`);
+  $(".computerChoice").text(`The computer chose ${randomDrawString}...`);
   $(".game-status-text").text(winCondition);
   var winConditionSlice = winCondition.slice(0, winCondition.length - 12);
 
@@ -62,7 +57,7 @@ $("button").click(function () {
     userPoint++;
     if (userPoint === 2) {
       $(".game-status-text").text(
-        winConditionSlice + "You won the entire game!"
+        `${winConditionSlice} You won the entire game!`
       );
       endGameResultScreen();
     }
@@ -71,7 +66,7 @@ $("button").click(function () {
     computerPoint++;
     if (computerPoint === 2) {
       $(".game-status-text").text(
-        winConditionSlice + "The computer won the entire game :("
+        `${winConditionSlice} The computer won the entire game :(`
       );
       endGameResultScreen();
     }
