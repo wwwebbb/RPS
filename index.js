@@ -88,7 +88,7 @@ function endGameResultScreen() {
   talleyParent.insertBefore(newGameButton, crtChild);
 
   //"New Game" button removes itself and resets the game once clicked
-  $(".newGame").click(function () {
+  $(".newGame").click(() => {
     $(".game-status-text").removeClass("end-animation");
     document
       .getElementById("talleyParent")
